@@ -43,3 +43,10 @@ mkdir volume
 mkdir docker-compose
 
 
+echo "#--------------------------------------"
+echo "Creando Usuario y grupo   "
+echo "#--------------------------------------"
+groupadd docker
+usermod -aG docker $USER
+echo "Reiniciando"
+systemctl reboot
