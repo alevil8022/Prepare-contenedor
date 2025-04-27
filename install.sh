@@ -7,21 +7,18 @@
 function mensaje
 {
 	echo "#--------------------------------------"
-	echo $1 
+	echo $1
 	echo "#--------------------------------------"
 }
 
 
-echo "#--------------------------------------"
-echo "Actualizando ultimos paquetes de SO.   "
-echo "#--------------------------------------"
+mensaje "Actualizando ultimos paquetes de SO.   "
+
 apt-get update
 
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
-echo "#--------------------------------------"
-echo "Instalando Docker, Docker-Compose.     "
-echo "#--------------------------------------"
+mensaje "Instalando Docker, Docker-Compose.     "
 # apt install docker docker.io docker-compose -y
 
 
@@ -45,18 +42,14 @@ sudo apt-get update
 sudo apt-get install docker-compose-plugin
 
 
-echo "#--------------------------------------"
-echo "Creando Directorios.     "
-echo "#--------------------------------------"
+mensaje "Creando Directorios.     "
 mkdir /contenedores
 cd /contenedores
 mkdir volume
 mkdir docker-compose
 
 
-echo "#--------------------------------------"
-echo "Creando Usuario y grupo   "
-echo "#--------------------------------------"
+mensaje "Creando Usuario y grupo   "
 groupadd docker
 usermod -aG docker $USER
 
@@ -66,5 +59,5 @@ echo "alias v='cd /contenedores/volume'" >> ~/.bashrc
 echo "alias d='cd /contenedores/docker-compose'" >> ~/.bashrc
 
 
-echo "Reiniciando"
+mensaje "Reiniciando"
 systemctl reboot
