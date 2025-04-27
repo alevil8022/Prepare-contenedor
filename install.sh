@@ -1,6 +1,17 @@
 # ------
 # Instalar Docker
 # ------
+#
+#
+
+function mensaje
+{
+	echo "#--------------------------------------"
+	echo $1 
+	echo "#--------------------------------------"
+}
+
+
 echo "#--------------------------------------"
 echo "Actualizando ultimos paquetes de SO.   "
 echo "#--------------------------------------"
@@ -48,5 +59,12 @@ echo "Creando Usuario y grupo   "
 echo "#--------------------------------------"
 groupadd docker
 usermod -aG docker $USER
+
+mensaje "Agregando Alias en la configuracion"
+echo "alias c='cd /contenedores'" >> ~/.bashrc
+echo "alias v='cd /contenedores/volume'" >> ~/.bashrc
+echo "alias d='cd /contenedores/docker-compose'" >> ~/.bashrc
+
+
 echo "Reiniciando"
 systemctl reboot
