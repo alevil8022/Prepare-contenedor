@@ -1,59 +1,12 @@
-version: '3.7'
-
+version: "3"
 services:
-  wireguard:
-    image: linuxserver/wireguard
-    container_name: wireguard
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/San_Francisco
-      - SERVERURL=159.223.201.166
-      - SERVERPORT=51820 #optional
-      - PEERS=12 #optional
-      - PEERDNS=auto #optional
-      - INTERNAL_SUBNET=10.10.10.0 #optional
-    volumes:
-      - /container/volume/wireguard:/config
-      - /lib/modules:/lib/modules
-      - /usr/src:/usr/src
+  portainer:
+    image: portainer/portainer-ce:latest
     ports:
-      - 51820:51820/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    dns:
-      - 172.20.0.7
-    restart: unless-stopped
-    networks:
-      containers:
-        ipv4_address: 172.20.0.6
-
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:v5.7
-    expose:
-      - "53"
-      - "67"
-      - "80"
-      - "443"
-    environment:
-      TZ: 'America/San_Francisco'
-      # WEBPASSWORD: 'peladonerd'
+      - 9443:9443
     volumes:
-      - '/container/volume/etc-pihole/:/etc/pihole/'
-      - '/container/volume/etc-dnsmasq.d/:/etc/dnsmasq.d/'
-    cap_add:
-      - NET_ADMIN
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
-    networks:
-      containers:
-        ipv4_address: 172.20.0.7
-
-networks:
-  containers:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
+volumes:
+  data:
