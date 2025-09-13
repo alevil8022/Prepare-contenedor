@@ -1,5 +1,5 @@
 # ------
-# Instalar Docker
+# Instalar Docker en Ubuntu
 # ------
 #
 #
