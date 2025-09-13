@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    restart: unless-stopped
+    network_mode: host
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp" # Optional: for DHCP server if desired
+      - "68:68/udp" # Optional: for DHCP server if desired
+      - "80:80/tcp" # Web interface
+      - "443:443/tcp" # Optional: for HTTPS web interface
+      - "3000:3000/tcp" # Optional: for initial setup if port 80 is in use
+    volumes:
+      - ./work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
