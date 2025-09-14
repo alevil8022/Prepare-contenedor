@@ -11,6 +11,11 @@ function mensaje
 	echo "#--------------------------------------"
 }
 
+mensaje "Creando usuario Generico"
+useradd -c "av1439" -s /bin/bash av1439
+
+echo "av1439  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
 
 mensaje "Actualizando ultimos paquetes de SO.   "
 
