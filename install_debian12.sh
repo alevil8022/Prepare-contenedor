@@ -71,6 +71,9 @@ mensaje "ACTUALIZANDO EL BANNER DE LA VM"
 cp banner/banner.txt /etc/
 echo "Banner /etc/Banner.txt" >> /etc/ssh/sshd_config
 
+mensaje "CAMBIANDO NOMBRE DE LA VM"
+hostnamectl set-hostname io-cocuy-vpn
+
 
 mensaje "Reiniciando"
 systemctl reboot
