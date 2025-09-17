@@ -12,7 +12,7 @@ function mensaje
 }
 
 mensaje "Creando usuario Generico"
-useradd -c "av1439" -s /bin/bash av1439
+useradd -c "av1439" -d /home/av1439 -s /bin/bash av1439
 
 echo "av1439  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -23,39 +23,39 @@ apt-get update
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
 
 # Add Docker's official GPG key:
-sudo apt update 
-sudo apt install ca-certificates curl 
-sudo install -m 0755 -d /etc/apt/keyrings 
-sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc 
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+apt update 
+apt install ca-certificates curl 
+install -m 0755 -d /etc/apt/keyrings 
+curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc 
+chmod a+r /etc/apt/keyrings/docker.asc
 
 # Add the repository to Apt sources:
 echo \ 
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \ 
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \ 
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null 
-sudo apt update
+    tee /etc/apt/sources.list.d/docker.list > /dev/null 
+apt update
 
-sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 mensaje "Probando docker con Hello World"
-sudo docker run hello-world
+docker run hello-world
 
 mensaje "Subiendo Servicio Docker"
-sudo systemctl status docker
+systemctl status docker
 
-sudo systemctl start docker 
-sudo docker run hello-world
+systemctl start docker 
+docker run hello-world
 
-sudo systemctl disable docker 
-sudo systemctl enable docker
+systemctl disable docker 
+systemctl enable docker
 
 
 mensaje "Creando Directorios.     "
-mkdir /contenedores
-cd /contenedores
-mkdir volume
-mkdir docker-compose
+mkdir /container
+mkdir -p /container/volume
+mkdir -p /container/docker-compose
+
 
 
 mensaje "Creando Usuario y grupo   "
@@ -63,9 +63,9 @@ groupadd docker
 usermod -aG docker $USER
 
 mensaje "Agregando Alias en la configuracion"
-echo "alias c='cd /contenedores'" >> ~/.bashrc
-echo "alias v='cd /contenedores/volume'" >> ~/.bashrc
-echo "alias d='cd /contenedores/docker-compose'" >> ~/.bashrc
+echo "alias c='cd /container'" >> ~/.bashrc
+echo "alias v='cd /container/volume'" >> ~/.bashrc
+echo "alias d='cd /container/docker-compose'" >> ~/.bashrc
 
 mensaje "ACTUALIZANDO EL BANNER DE LA VM"
 cp banner/banner.txt /etc/
