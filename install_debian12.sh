@@ -12,7 +12,7 @@ function mensaje
 }
 
 mensaje "Creando usuario Generico"
-useradd -c "av1439" -d /home/av1439 -s /bin/bash av1439
+useradd -c "av1439" -m -d /home/av1439 -s /bin/bash av1439
 
 echo "av1439  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
