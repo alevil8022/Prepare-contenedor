@@ -68,8 +68,11 @@ echo "alias v='cd /container/volume'" >> ~/.bashrc
 echo "alias d='cd /container/docker-compose'" >> ~/.bashrc
 
 mensaje "ACTUALIZANDO EL BANNER DE LA VM"
-cp banner/banner.txt /etc/
-echo "Banner /etc/Banner.txt" >> /etc/ssh/sshd_config
+echo '#!/bin/bash'; while IFS= read -r line; do echo "echo '$line'"; done < banner/banner.txt > mymotd.sh
+cp mymotd.sh /etc/profile.d/
+chmod +x /etc/profile.d/mymotd.sh
+systemctl restart sshd
+
 
 mensaje "CAMBIANDO NOMBRE DE LA VM"
 hostnamectl set-hostname io-cocuy-vpn
