@@ -18,7 +18,7 @@ echo "av1439  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 mensaje "Actualizando ultimos paquetes de SO.   "
 
-apt-get update
+apt update
 
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
 
