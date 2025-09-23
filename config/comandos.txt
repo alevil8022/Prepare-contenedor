@@ -1,0 +1,36 @@
+# Instalacion git
+apt-get install git
+
+# Configuracion git
+git config --global user.name "Alejo"
+git config --global user.email "alevil8022@gmail.com"
+
+
+# Crear el key 
+ssh-keygen -t rsa -b 4096 -C "alevil8022@gmail.com"
+
+# start the ssh-agent in the background
+eval "$(ssh-agent -s)"
+
+# agregar la key privada al ssh-agent
+ssh-add ~/.ssh/id_rsa 
+
+# Ingresar Key en el perfil git
+cat ~/.ssh/id_rsa.pub
+
+# Configurar el contenido del git 
+git remote set-url origin git@github.com:alevil8022/Prepare-contenedor.git
+
+# o usar este
+git remote add origin git@github.com:alevil8022/Prepare-contenedor.git
+
+
+# Agregar el contenido al git
+git add .
+
+# Darle Commit
+git commit -m "Comentario"
+
+# Darle Push
+git push -u origin master
+
