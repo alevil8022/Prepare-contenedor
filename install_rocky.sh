@@ -79,9 +79,8 @@ echo "alias v='cd /container/volume'" >> ~/.bashrc
 echo "alias d='cd /container/docker-compose'" >> ~/.bashrc
 
 mensaje "ACTUALIZANDO EL BANNER DE LA VM"
-echo '#!/bin/bash'; while IFS= read -r line; do echo "echo '$line'"; done < banner/banner.txt > mymotd.sh
-cp mymotd.sh /etc/profile.d/
-chmod +x /etc/profile.d/mymotd.sh
+echo '#!/bin/bash'; while IFS= read -r line; do echo "echo '$line'"; done < banner/banner2.txt > /etc/motd.d/99-custom
+sudo chmod +x /etc/motd.d/99-custom
 systemctl restart sshd
 
 
