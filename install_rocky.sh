@@ -90,7 +90,7 @@ sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/9/tail
 sudo dnf install tailscale
 sudo systemctl enable --now tailscaled
 sudo tailscale up
-
+sudo tailscale set --advertise-exit-node
 
 #-------------------------------------------------------------
 
