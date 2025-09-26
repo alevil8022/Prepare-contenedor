@@ -111,6 +111,15 @@ sudo tailscale up
 
 sudo tailscale set --advertise-exit-node
 
+#-------------------------------------------------------------
+
+mensaje "Modificando puertos SSH"
+sudo echo "Port XXXX" >> /etc/ssh/sshd_config
+sudo systemctl restart sshd
+
+#-------------------------------------------------------------
+
+
 
 #-------------------------------------------------------------
 
