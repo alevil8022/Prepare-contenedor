@@ -83,6 +83,23 @@ echo '#!/bin/bash'; while IFS= read -r line; do echo "echo '$line'"; done < bann
 sudo chmod +x /etc/motd.d/99-custom
 systemctl restart sshd
 
+#-------------------------------------------------------------
+mensaje "INSTALANDO TAILSCALE"
+
+sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/9/tailscale.repo
+sudo dnf install tailscale
+sudo systemctl enable --now tailscaled
+sudo tailscale up
+
+
+#-------------------------------------------------------------
+
+mensaje "Modificando puertos SSH"
+sudo echo "Port XXXX" >> /etc/ssh/sshd_config
+sudo systemctl restart sshd
+
+#-------------------------------------------------------------
+
 
 
 mensaje "Reiniciando"
