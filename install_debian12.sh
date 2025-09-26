@@ -22,6 +22,15 @@ useradd -c "av1439" -m -d /home/av1439 -s /bin/bash av1439
 echo "av1439  ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 #-------------------------------------------------------------
+
+mensaje "CAMBIANDO PASSWORD USUARIO"
+# Generar el hash de la contraseña "MiPassword123"
+HASH_PASSWORD=$(openssl passwd -6 'MiPassword123')
+
+# Establecer la contraseña encriptada para el usuario 'miusuario'
+echo "av1439:${HASH_PASSWORD}" | sudo chpasswd -e
+
+#-------------------------------------------------------------
 mensaje "Actualizando ultimos paquetes de SO.   "
 
 apt update
