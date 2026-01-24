@@ -6,7 +6,7 @@ services:
     hostname: raspi # The name in your Tailscale admin console
     environment:
       # Generate an auth key from your Tailscale admin console (Settings -> Keys)
-      - TS_AUTHKEY=tskey-auth-kmJAkHL4M821CNTRL-GMaSfhMG2NZoom71ut7NMZ3g3SAEUUyRB
+      - TS_AUTHKEY=tskey-auth-xxxxxxxxx
       - TS_EXTRA_ARGS=--advertise-exit-node
       # Persist state so the container keeps its identity across restarts
       - TS_STATE_DIR=/var/lib/tailscale
