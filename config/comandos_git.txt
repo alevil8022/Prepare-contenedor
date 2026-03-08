@@ -18,11 +18,16 @@ ssh-add ~/.ssh/id_ed25519
 # Ingresar Key en el perfil git
 cat ~/.ssh/id_ed25519.pub
 
+# REvisar la conexion hacia el github
+ssh -T git@github.com
+
+
 # Configurar el contenido del git 
 git remote set-url origin git@github.com:alevil8022/Prepare-contenedor.git
 
 # o usar este
 git remote add origin git@github.com:alevil8022/Prepare-contenedor.git
+
 
 
 # Agregar el contenido al git
