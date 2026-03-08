@@ -7,7 +7,7 @@ git config --global user.email "alevil8022@gmail.com"
 
 
 # Crear el key 
-ssh-keygen -t rsa -b 4096 -C "alevil8022@gmail.com"
+ssh-keygen -t ed25519 -C "alevil8022@gmail.com"
 
 # start the ssh-agent in the background
 eval "$(ssh-agent -s)"
